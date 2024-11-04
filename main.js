@@ -70,7 +70,9 @@ function loginUser(){
     signInWithEmailAndPassword(auth, email, password).then((userCredentials)=>{
       const user = userCredentials.user;
       if(user){
-        notify.innerText = "User Loged In";
+        // notify.innerText = "User Loged In";
+        notify.innerText = "";
+
       }
       else{
         notify.innerText = "Email or Password is wrong";
@@ -90,29 +92,32 @@ login_btn.addEventListener('click', loginUser);
 
 // onAuthStateChanged(auth, (user)=>{
 //   if(user){
-//     document.querySelector('.user_form').classList.add('hide');
-//     document.querySelector('.admin_page').classList.add('show');
+
+//     document.querySelector('.main').style.display = "none";
+//     document.querySelector('.user_form').style.display = "none";
+//     document.querySelector('.admin-section').style.display = "flex";
 //   }
 // })
 
-function okay(){
-  onAuthStateChanged(auth, (user)=>{
-    if(user){
-      console.log("in login");
-      document.querySelector('.user_form').classList.add('hide');
-      document.querySelector('.admin_page').classList.add('visibleOn');
-      // window.location = "D:\OneDrive\Desktop\COLLEGE-PROJECT\CodeAcademy\admin\index.html";
-    }
-  })
-}
-login_btn.addEventListener('click', okay);
 
 // LOGOUT
 
 function logoutUser(){
   signOut(auth).then(()=>{
-    document.querySelector('.user_form').classList.remove('hide');
-    document.querySelector('.admin_page').classList.remove('show');
+    // document.querySelector('.user_form').classList.remove('hide');
+    // document.querySelector('.admin_page').classList.remove('show');
+
+    notify.innerText = "";
+    notify2.innerText = "";
+    document.querySelector('.main').style.display = "block";
+    document.querySelector('.main').classList.remove('showLoginBoxMain');
+    
+    // document.querySelector('.user_form').style.display = "block";
+    // document.querySelector('.user_form').classList.remove('showLoginBox');
+    document.querySelector('.nav_login_button').style.visibility = "visible";
+
+    document.querySelector('.admin-section').style.display = "none";
+
   }).catch((err)=>{
     console.log(err);
   })
@@ -165,8 +170,21 @@ gmail_login_btn.addEventListener('click',loginWithGoogle);
 
 onAuthStateChanged(auth,(user)=>{
   if(user){
-    document.querySelector('.user_form').classList.add('hide');
-    document.querySelector('.admin_page').classList.add('show');
+    // document.querySelector('.user_form').classList.add('hide');
+    
+
+    // closeLoginBox();
+    notify.innerText = "";
+    notify2.innerText = "";
+    document.getElementById("user_form").style.animation = "slideToDown 1s ease forwards";
+    document.querySelector('.main').classList.remove('showLoginBoxMain');
+    document.querySelector('#email').value = "";
+    document.querySelector('#password').value = "";
+    
+
+    document.querySelector('.main').style.display = "none";
+    // document.querySelector('.user_form').style.display = "none";
+    document.querySelector('.admin-section').style.display = "flex";
   }
 })
 
@@ -186,16 +204,16 @@ function loginWithFacebook(){
 const fb_login_btn = document.querySelector("#fb_login_btn")
 fb_login_btn.addEventListener('click',loginWithFacebook);                       
 
-onAuthStateChanged(auth,(user)=>{
-  if(user){
-    console.log("yes");
-    document.querySelector('.user_form').classList.add('hide');
-    document.querySelector('.admin_page').classList.add('show');
-  }
-  else{
-    console.log("sorry");
-  }
-})
+// onAuthStateChanged(auth,(user)=>{
+//   if(user){
+//     console.log("yes");
+//     // document.querySelector('.user_form').classList.add('hide');
+//     // document.querySelector('.admin_page').classList.add('show');
+//   }
+//   else{
+//     console.log("sorry");
+//   }
+// })
 
 
 // LOGIN BOX
@@ -204,8 +222,11 @@ function showLoginBox(){
   document.querySelector('.main').classList.add('showLoginBoxMain');
   document.querySelector('.user_form').classList.add('showLoginBox');
   document.getElementById("user_form").style.animation = "slideFromTop 1s ease forwards";
+  notify.innerText = "";
+  notify2.innerText = "";
 
   // document.querySelector('.nav_login_button').classList.add('visibleOff');
+  document.querySelector('.nav_login_button').style.visibility = "hidden";
 
 }
 const nav_login_button = document.querySelector('.nav_login_button')
@@ -224,6 +245,9 @@ function closeLoginBox(){
   notify2.innerText = "";
 
   // document.querySelector('.nav_login_button').classList.add('visibleOn');
+  document.querySelector('.nav_login_button').style.visibility = "visible";
+  
+
 
 }
 const form_close = document.querySelector('.form_close')

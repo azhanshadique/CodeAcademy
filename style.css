@@ -1056,18 +1056,18 @@ body{
   .visibleOn{
     visibility: visible;
   }
-  .admin_page{
-    /* display: none;
+  .admin-page{
+    /* display: block;
     background: red; */
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 
-  .admin_section{
-    display: flex;
+  .admin-section{
+    display: none;
     justify-content: space-around;
     padding: 50px 0;
   }
-  .admin_section button.logout{
+  .admin-section button.logout{
     padding: 5px 20px;
     background: #111;
     color: #ffff;
@@ -1076,7 +1076,7 @@ body{
     transition: 0.2s ease-in-out;
   }
   
-  .admin_section button:hover{
+  .admin-section button:hover{
     background: transparent;
     color: #111;
   }
@@ -1125,6 +1125,7 @@ body{
     }
     
 }
+
   .hideLoginBoxMain{
     /* background: #bb4444; */
     filter: blur(0);
