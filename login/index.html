@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAcademy</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="../images/logo2.png" type="image/x-icon">
+
+</head>
+<body>
+
+    <div class="header">
+        <header class="header-content">
+            <a href="#logo" class="logo">
+                <img 
+                    src="../images/logo2.png" 
+                    alt="Logo Image" 
+                    class="logo-icon"
+                >
+                <span class="logo-text">CODEACADEMY</span>
+            </a>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="/features/index.html" class="nav-link">Features</a>
+                <a href="" class="nav-link about">About Us</a>
+                <a href="/contact/index.html" class="nav-link">Contact Us</a>
+
+            </nav>
+            
+            
+            <div class="nav-button">
+                <!-- <a href="#login" class="signup-button">Log In</a> -->
+                <a href="#login" class="signup-button">Sign Up</a>
+            </div>
+            
+
+            <button type="button" class="menu-button">
+                <img src="./images/Hamburger.svg" alt="Menu Button" class="menu-icon">
+            </button>
+        </header>
+        <div class="header-line"></div>
+    </div>
+
+    <div class="user_form">
+        <div class="from_box">
+            <div class="form">
+                <span class="notify" id="notify"></span>
+                <input type="email" placeholder="enter your email" id="email">
+                <input type="password" placeholder="enter your password" id="password">
+                <button id="login_btn" class="login">Login</button>
+                <span id="forget_link" class="forget_link">Forget Password?</span>
+                <button id="signup_btn" class="signup">Create Account</button>
+                <button id="gmail_login_btn" class="gmail_login_btn">Login With Google</button>
+                <button id="fb_login_btn" class="fb_login_btn">Login With Facebook</button>
+              </div>
+              <div class="forget_password">
+                  <div>
+                      <div class="notify2"></div>
+                      <input type="email" placeholder="enter your email" id="forget_email">
+                      <button id="forget_btn">Forget Password</button>
+                      <a href="./index.html">Login Now</a>
+                  </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="admin_page">
+        <div class="admin_section">
+            <h1>Hello Admin</h1>
+            <button id="logout" class="logout">Logout</button>
+        </div>
+    </div>
+
+
+    <script type="module" src="./main.js">
+        
+    </script>
+</body>
+</html>
