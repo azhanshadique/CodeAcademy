@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAcademy</title>
+    <link rel="stylesheet" href="/signup/style.css">
+    <link rel="shortcut icon" href="./images/logo2.png" type="image/x-icon">
+
+</head>
+<body>
+    <div class="header">
+        <header class="header-content">
+            <a href="#logo" class="logo">
+                <img 
+                    src="../images/logo.png" 
+                    alt="Logo Image" 
+                    class="logo-icon"
+                >
+                <span class="logo-text">CODEACADEMY</span>
+            </a>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="/features/index.html" class="nav-link">Features</a>
+                <a href="" class="nav-link about">About Us</a>
+                <a href="/contact/index.html" class="nav-link">Contact Us</a>
+
+            </nav>
+            
+            
+            <div class="nav-button">
+                <a href="./login/index.html" class="signup-button">Log In</a>
+                <a href="#login" class="signup-button">Sign Up</a>
+            </div>
+            
+
+            <button type="button" class="menu-button">
+                <img src="./images/Hamburger.svg" alt="Menu Button" class="menu-icon">
+            </button>
+        </header>
+        <div class="header-line"></div>
+        
+    </div>
+    <!-- <div style="margin-top: 100px;">ABOUT US PAGE</div> -->
+
+    <div class="user_form" id="user_form">
+        <div class="form_box">
+            <span class="notify" id="notify"></span>
+            <div class="form">
+                <div class="login_div">
+                    <div class="login_text">Login <span class="material-symbols-outlined form_close">close</span></div>
+                  
+                    <div class="login_acc_yet">Don't have an acount yet? <span >Sign up here</span></div>
+                    <div class="login_line"></div>
+                </div>
+                
+                <div class="email_div">
+                    <div class="email_text">Email address</div>
+                    <input type="email" placeholder="Enter email address" id="email">
+                </div>
+                
+                <div class="password_div">
+                    <div class="password_text">Password <span id="forget_link" class="forget_link">Forgot Password?</span></div>
+                    <input type="password" placeholder="Enter password" id="password">
+                </div>
+                
+                <button id="login_btn" class="login_btn" >Login</button>
+                <!-- <a href="/admin/index.html" id="login_btn" class="login">Login</a> -->
+                
+                <div class="or_line">
+                    <span class=""></span>
+                    <div>OR</div>
+                    <span class=""></span>
+                </div>
+
+                <button id="signup_btn" class="signup">Create Account</button>
+
+                <div class="google_fb_btn">
+                    <button id="gmail_login_btn" class="gmail_login_btn">Login with Google</button>
+                    <button id="fb_login_btn" class="fb_login_btn">Login with Facebook</button>   
+                    <p>By signing in or creating an account, you are agreeing to our <span>Terms & Conditions</span> and our <span>Privacy Policy</span>.</p> 
+                </div>
+              </div>
+              <div class="forget_password">
+                  <div>
+                      <div class="notify2"></div>
+                      <input type="email" placeholder="enter your email" id="forget_email">
+                      <button id="forget_btn">Forget Password</button>
+                      <a href="./index.html">Login Now</a>
+                  </div>
+              </div>
+        </div>
+    </div>
+
+
+    
+</body>
+</html>

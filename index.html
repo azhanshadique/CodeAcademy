@@ -5,484 +5,401 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeAcademy</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./images/logo2.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close" />
+    <link rel="shortcut icon" href="./assets/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon-names=close" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" /> -->
 </head>
 <body>
-    <div class="header">
-        <header class="header-content">
-            <a href="#logo" class="logo">
-                <img 
-                    src="./images/logo.png" 
-                    alt="Logo Image" 
-                    class="logo-icon"
-                >
-                <span class="logo-text">CODEACADEMY</span>
-            </a>
-            <nav class="nav">
-                <a href="" class="nav-link home">Home</a>
-                <a href="/features/index.html" class="nav-link">Features</a>
-                <a href="/about/index.html" class="nav-link">About Us</a>
-                <a href="/contact/index.html" class="nav-link">Contact Us</a>
 
-            </nav>
-            
-            
-            <div class="nav-button">
-                <!-- <a href="./login/index.html" class="signup-button nav_login_button">Log In</a> -->
-                <button id="nav_login_button" class="signup-button nav_login_button">Log In</button>
-                <a href="#login" class="signup-button">Sign Up</a>
-            </div>
-            
-
-            <button type="button" class="menu-button">
-                <img src="./images/Hamburger.svg" alt="Menu Button" class="menu-icon">
-            </button>
-        </header>
-        <div class="header-line"></div>
+    <!-- LOADER  -->
+    <div id="loader">
+        <h1 class="loader-content1">CODE</h1>
+        <h1 class="loader-content2">LEARN</h1>
+        <h1 class="loader-content3">SUCCEED</h1>
     </div>
 
+    <!-- <div id="loader-2">
+        
+    </div> -->
+    <!-- <div id="fixed-image"></div> -->
 
+     
+    <div id="main">
 
-    <div class="main">
-        <div class="main-section">
-            <div class="content">
-                <p class="section-label">Gear Up for Success</p>
-                <h1 class="section-title">Empower Your Future with <span>Coding Skills</span></h1>
-                <p class="section-description">
-                    With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.
-                </p>
-                <div class="button-group">
-                    <a href="#start" class="start-button">Start Now</a>
-                    <a href="#tour" class="tour-button">Take Tour</a>
+        <!-- HEADER - NAVBAR -->
+        <header id="header" data-scroll data-scroll-sticky data-scroll-target="#main">
+            <nav class="header-content">
+                <div class="logo-text">CODEACADEMY</div>
+                <div class="nav-list1">
+                    <h4><a href="/" class="current-nav">Home</a></h4>
+                    <h4><a href="/features/index.html" class="">Features</a></h4>
+                    <h4><a href="/about/index.html" class="">About</a></h4>
+                    <h4><a href="/contact/index.html" class="">Contact</a></h4>
                 </div>
-            </div>
-        </div>
-
-        <div class="company-container">
-            <h2 class="company-title">Trusted by the best</h2>
-    
-            <div class="company-grid">
-                <div class="company-logo">
-                    <img src="./images/Google.svg" class="svg-img" alt="Google-Logo">
-                    <span class="company-logo-text">Google</span>
+                
+                <div class="nav-list2 button">
+                    <!-- <a href="./login/index.html" class="signup-button nav-login-button">Log In</a> -->
+                    <!-- <button id="nav-login-button" class=" nav-login-button">Log In</button> -->
+                    <!-- <a href="./signup/index.html" class="signup-button">Sign Up</a> -->
+                    <h4 class="nav-login-button"><a href="#" >Sign in</a></h4>
+                    <h4 class="nav-signup-button"><a href="#" >Sign up</a></h4>
                 </div>
-                <div class="company-logo">
-                    <img src="./images/Microsoft.svg" class="svg-img" alt="Microsoft-Logo">
-                    <span class="company-logo-text">Microsoft</span>
-                </div>
-                <div class="company-logo">
-                    <img src="./images/linkedin.svg" class="svg-img" alt="LinkedIn-Logo">
-                    <span class="company-logo-text">LinkedIn</span>
-                </div>
-                <div class="company-logo">
-                    <img src="./images/VectorEdu.svg" class="svg-img" alt="VectorEdu-Logo">
-                    <span class="company-logo-text">VectorEdu</span>
-                </div>
-            </div>
-    
-        </div>
-    
-        <div class="feature-container">
-            <div class="feature-content">
-    
-                <div class="main-info">
-                    <h2>
-                        Our competitive advantage
-                    </h2>
-                    <p>
-                        This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of real written text but is random or otherwise generated.
-                    </p>
-                </div>
-    
-                <div class="feature-grid">
-                    <!-- card 1 -->
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <img class="feature-svg" src="./images/PersonalizedLearn.svg" alt="svg-image">
-                        </div>
-                        <div class="feature-card-info">
-                            <p class="feature-card-title">
-                                Personalized Learning
-                            </p>
-                            <p class="feature-card-description">
-                                Offer tailored learning experiences through AI and machine learning to cater to individual student needs.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- card 2 -->
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <img class="feature-svg" src="./images/Affordability.svg" alt="svg-image">
-                        </div>
-                        <div class="feature-card-info">
-                            <p class="feature-card-title">
-                                Affordability
-                            </p>
-                            <p class="feature-card-description">
-                                Provide high-quality education at an affordable price point, making it accessible to a broader audience.                        
-                            </p>
-                        </div>
-                    </div>
-                    <!-- card 3 -->
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <img class="feature-svg" src="./images/IndustryPatner.svg" alt="svg-image">
-                        </div>
-                        <div class="feature-card-info">
-                            <p class="feature-card-title">
-                                Industry Partnerships
-                            </p>
-                            <p class="feature-card-description">
-                                Collaborate with well-known companies and institutions to offer accredited courses and certifications, adding credibility to your offerings.                        
-                            </p>
-                        </div>
-                    </div>
-                    <!-- card 4 -->
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <img class="feature-svg" src="./images/InnovativeTech.svg" alt="svg-image">
-                        </div>
-                        <div class="feature-card-info">
-                            <p class="feature-card-title">
-                                Innovative Technology
-                            </p>
-                            <p class="feature-card-description">
-                                Utilize cutting-edge technology, such as augmented reality or virtual reality, to create immersive learning experiences.                        
-                            </p>
-                        </div>
-                    </div>
-                    <!-- card 5 -->
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <img class="feature-svg" src="./images/IndustryPatner.svg" alt="svg-image">
-                        </div>
-                        <div class="feature-card-info">
-                            <p class="feature-card-title">
-                                Responsive Support
-                            </p>
-                            <p class="feature-card-description">
-                                Provide exceptional customer support and assistance to students and educators.                        
-                            </p>
-                        </div>
-                    </div>
-                    <!-- card 6 -->
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <img class="feature-svg" src="./images/Analytics.svg" alt="svg-image">
-                        </div>
-                        <div class="feature-card-info">
-                            <p class="feature-card-title">
-                                Analytics and Insights
-                            </p>
-                            <p class="feature-card-description">
-                                Offer detailed progress tracking and analytics to help students and teachers monitor performance and make data-driven decisions.                        
-                            </p>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
-        </div>
-    
-        <div class="testimonial-container">
-            <div class="testimonial-content">
-                <h2 class="testimonial-title">
-                    What Others Say About Us
-                </h2>
-                <div class="testimonial-grid">
-    
-                    <!-- card 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            “CodeAcademy revolutionized my classroom! Engaging content and teacher resources make learning enjoyable. Highly recommended for educators.”
-                        </div>
-                        <div class="testimonial-avatar">
-                            <img class="testimonial-avatar-img" src="./images/avatar1.png" alt="">
-                        </div>
-                        <div class="testimonial-details">
-                            <h3>
-                                Sarah Johnson
-                            </h3>
-                            <p>
-                                8th Grade English Teacher
-                            </p>
-                        </div>
-                    </div>
-    
-                    <!-- card 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            “CodeAcademy transformed our family's learning journey. Safe, interactive, and progress tracking features are invaluable for parents.”
-                        </div>
-                        <div class="testimonial-avatar">
-                            <img src="./images/avatar2.png" alt="">
-                        </div>
-                        <div class="testimonial-details">
-                            <h3>
-                                Mark Davis
-                            </h3>
-                            <p>
-                                Parent
-                            </p>
-                        </div>
-                    </div>
-    
-                    <!-- card 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            “CodeAcademy, a true game-changer! Flexible content, tailored assessments, and excellent support. Integral to our school district's success.”                    </div>
-                        <div class="testimonial-avatar">
-                            <img src="./images/avatar3.png" alt="">
-                        </div>
-                        <div class="testimonial-details">
-                            <h3>
-                                Dr. James Carter
-                            </h3>
-                            <p>
-                                School Administrator
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="newsletter-container">
-            <div class="newsletter-content">
-    
-                <!-- left part  -->
-                <div class="newsletter-left">
-                    <img src="./images/img.png" alt="Image" loading="lazy">
-                </div>
-    
-                <!-- right part -->
-                <div class="newsletter-right">
-                    <div class="newsletter-info">
-                        <h2 class="newsletter-title">
-                            Get the latest updates
-                        </h2>
-                        <p class="newsletter-description">
-                            Sign up for our newsletter
-                        </p>
-                    </div>
-    
-                    <form class="newsletter-form">
-                        
-                        <input class="newsletter-email" type="text" placeholder="Email">
-                        <button class="newsletter-send-button">
-                            Send
-                        </button>
-    
-                    </form>
-    
-                    <div class="privacy-policy">
-                        <p>
-                            By signing up to our newsletter you agree to our 
-                            <a class="newsletter-link" href="#">
-                                Terms of Service
-                            </a>
-                             and 
-                            <a class="newsletter-link" href="#">
-                                Privacy policy
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="footer-container">
-            <footer class="footer">
-                <div class="footer-top">
-    
-                    <div class="company-logo">
-                        <a class="footer-logo-link" href="">
-                            <img class="footer-logo-svg" src="./images/logo2.png" alt="">
-                            <p class="footer-logo-text">
-                                CodeAcademy
-                            </p>
-                        </a>
-                    </div>
-                    <div class="filler-text">
-                        Seamless Learning for Brighter Futures.
-                    </div>
-                    <div class="socials">
-                        <a href="#" class="social-link">
-                            <img src="./images/instagram.svg" class="social-icon" alt="" loading="lazy">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img src="./images/linkedin-copy.svg" class="social-icon" alt="" loading="lazy">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img src="./images/Microsoft.svg" class="social-icon" alt="" loading="lazy">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img src="./images/twitter.svg" class="social-icon" alt="" loading="lazy">
-                        </a>
-                    </div>
-    
-                </div>
-    
-                <div class="footer-grid">
-                    <!-- column 1 -->
-                    <div class="footer-grid-column">
-                        <div class="footer-grid-heading">
-                            Products
-                        </div>
-                        <ul class="footer-links-list">
-                            <li>
-                                <a class="footer-link" href="#overview">Overview</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Solutions</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Pricing</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Customers</a>
-                            </li>
-                        </ul>
-                    </div>
+                
+                <div class="user-profile  button">
+                    <!-- <div id="medium-dot"></div> -->
                     
-                    <!-- column 2  -->
-                    <div class="footer-grid-column">
-                        <div class="footer-grid-heading">
-                            Company
-                        </div>
-                        <ul class="footer-links-list">
-                            <li>
-                                <a class="footer-link" href="#overview">About</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Investor Relations</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Jobs</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Press</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Blog</a>
-                            </li>
-                        </ul>
-                    </div>
-    
-                    <!-- column 3  -->
-                    <div class="footer-grid-column">
-                        <div class="footer-grid-heading">
-                            Support
-                        </div>
-                        <ul class="footer-links-list">
-                            <li>
-                                <a class="footer-link" href="#overview">Contact</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Documentation</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Chat</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">FAQ</a>
-                            </li>
-                        </ul>
-                    </div>
-    
-                    <!-- column 4 -->
-                    <div class="footer-grid-column">
-                        <div class="footer-grid-heading">
-                            Legal
-                        </div>
-                        <ul class="footer-links-list">
-                            <li>
-                                <a class="footer-link" href="#overview">Terms of Service</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a class="footer-link" href="#overview">Cookie Settings</a>
-                            </li>
-                        </ul>
-                    </div>
+                     
+                    <!-- <h5 id="user-profile-name"></h5> -->
+                    <!-- <h5 class="user-profile-name"><input type="text" value="" id="user-profile-name" readonly></h5> -->
+                    <img src="/assets/images/user6.png" class="user-image" alt="User Image">
+                    <span class="material-symbols-outlined dropdown-profile-arrow">keyboard_arrow_down</span>
+                    
+                    
+                    <!-- <button id="logout" class="logout">Logout</button> -->
+
                 </div>
-            </footer>
+                <!-- <button type="button" class="menu-button">
+                    <img src="./images/Hamburger.svg" alt="Menu Button" class="menu-icon">
+                </button> -->
     
-            <div class="footer-copyright">
-                © 2024 - Present CodeAcademy. All rights reserved.
+                <h3>Menu</h3>
+            </nav>
+        </header>
+
+        <div class="user-profile-box" data-scroll data-scroll-sticky data-scroll-target="#main">
+            <h5 class="user-profile-name"><input type="text" value="" id="user-profile-name" readonly class="user-profile-name-input"></h5>
+            <h5 class="user-profile-email"><input type="text" value="" id="user-profile-email" readonly class="user-profile-email-input"></h5>
+            <div class="userprofile-signout-button button" id="hehe">
+                <h4 id="logout" class="signout-button">
+                    <span class="material-symbols-outlined logout-icon">logout</span>
+                    <a href="#" class="logout">Sign Out</a>
+                </h4>    
             </div>
-            
+
+        </div>
+        <!-- SECTION - 1 -->
+        <div class="section-1">
+            <div id="center">
+                <div id="left">
+                    <h3>Learn coding at your own pace, from anywhere, with access to quizzes and a personalized progress tracker.</h3>
+                </div>
+                
+                <div id="right">
+                        <h1>
+                            <!-- <div id="moving-text-up">
+                                <div class="con-up">
+                                    <h1>CODE</h1>
+                                    <h1>BUILD</h1>
+                                    <h1>SHAPE</h1>
+                                </div>
+                                <div class="con-up">
+                                    <h1>CODE</h1>
+                                    <h1>BUILD</h1>
+                                    <h1>SHAPE</h1>
+                                </div>
+                                <div class="con-up">
+                                    <h1>CODE</h1>
+                                    <h1>BUILD</h1>
+                                    <h1>SHAPE</h1>
+                                </div>
+                                <div class="con-up">
+                                    <h1>CODE</h1>
+                                    <h1>BUILD</h1>
+                                    <h1>SHAPE</h1>
+                                </div>
+                                <div class="con-up">
+                                    <h1>CODE</h1>
+                                    <h1>BUILD</h1>
+                                    <h1>SHAPE</h1>
+                                </div>
+                            </div> -->
+                            <div id="change-text">
+                                <h1></h1>
+                            </div>
+                            YOUR<br>
+                            FUTURE
+                        </h1>
+                </div>
+
+            </div>
+            <div id="hero-shape">
+                <div id="hero-1"></div>
+                <div id="hero-2"></div>
+                <div id="hero-3"></div>
+            </div>
+            <video autoplay loop muted src="./assets/videos/video1.mp4"></video>
         </div>
 
+        <!-- SECTION - 2 -->
+        <div class="section-2">
+            <div class="moving-text">
+                <div class="cls">
+                    <h1>CODE</h1>
+                    <div id="dot"></div>
+                    <h1>LEARN</h1>
+                    <div id="dot"></div>
+                    <h1>SUCCEED</h1>
+                    <div id="dot"></div>
+                </div>
+                <div class="cls">
+                    <h1>CODE</h1>
+                    <div id="dot"></div>
+                    <h1>LEARN</h1>
+                    <div id="dot"></div>
+                    <h1>SUCCEED</h1>
+                    <div id="dot"></div>
+                </div>
+                
+                
+            </div>
+            <div class="section2-bottom">
+                <h1>We are a team of developers committed to creating a platform that makes coding accessible, engaging, and focused on practical skill development.</h1>
+                <div class="section2-bottom-part2">
+                    <!-- <img src="https://uploads-ssl.webflow.com/64d3dd9edfb41666c35b15b7/64d3dd9edfb41666c35b15d1-Holding-thumb-p-500.jpg"
+                        alt=""> -->
+                        <img src="/assets/images/img.png" alt="">
+                        <p>We love to create, we love to solve, and we love to turn amazing ideas
+                            into reality. Our mission is to empower learners by providing a platform that fosters skill development and growth in the tech world.</p>
+                </div>
+            </div>
+            <div id="moving-circle">
+
+            </div>
+        </div>
+
+        <!-- SECTION - 3 -->
+        <div class="section-3">
+            <div class="element-heading">
+                <div id="small-dot"></div>
+                <h2>FEATURES</h2>
+            </div>
+            <div class="element-container">
+                <div id="element1" class="element"
+                    data-image="https://images.unsplash.com/photo-1701001308648-7b731a52b8d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>Personalized Learning</h2>
+                </div>
+                <div class="element"
+                    data-image="https://images.unsplash.com/photo-1700975928909-da4a46227a47?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8">
+                    <div class="overlay"></div>
+                    <h2>Affordability</h2>
+                </div>
+                <div class="element"
+                    data-image="https://images.unsplash.com/photo-1701077137611-9be394bf62f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>Industry Partnerships</h2>
+                </div>
+                <div class="element"
+                    data-image="https://images.unsplash.com/photo-1701014159309-4a8b84faadfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOXx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>Innovative Technology</h2>
+                </div>
+                <div class="element"
+                    data-image="https://images.unsplash.com/photo-1700924546093-f914fd5b8814?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2> Responsive Support</h2>
+                </div>
+                <div class="element"
+                    data-image="https://images.unsplash.com/photo-1700601437860-e66da79cf6d2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1OXx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>Analytics and Insights</h2>
+                </div>
+                <div class="element"
+                    data-image="https://images.unsplash.com/photo-1700769025506-6c3dcb9ec9b7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2OXx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>One Platform for All</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION - 4 -->
+        <div class="section-4">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="slider">Slide 1</div>
+                    <div class="slider">Slide 2</div>
+                    <div class="slider">Slide 3</div>
+                    <div class="slider">Slide 4</div>
+                    <div class="slider">Slide 5</div>
+                    <div class="slider">Slide 6</div>
+                    <div class="slider">Slide 7</div>
+                </div>
+            </div>
+        </div>
+        <!-- url(https) -->
+        <!-- SECTION - 5 -->
+        <div class="section-5">
+
+        </div>
+
+        <!-- <div id="full-scr">
+            <div id="full-div1">
+                
+            </div>
+        </div> -->
+  
     </div>
-
-       
-
-    <div class="user_form" id="user_form">
-        <div class="form_box">
+        
+    <div id="footer">
+        <div id="shape1"></div>
+        <div id="shape2"></div>
+        <div id="footerupper">
+            <div>
+                <h2>Code.</h2>
+                <h2>Learn.</h2>
+                <h2>Succeed.</h2>
+            </div>
+            <div id="footer-email">
+                <!-- <p>Get industry insights and creative inspiration straight to your inbox.</p>
+                <h6>Email Address</h6> -->
+                <p>Get in touch</p>
+                <h6>codeacademy.support@gmail.com</h6>
+            </div>
+        </div>
+        <div id="footerlower">
+            <h1>CodeAcademy</h1>
+            <!-- <img src="https://assets-global.website-files.com/64d3dd9edfb41666c35b15b7/64d3dd9edfb41666c35b15c6-Footer%20Logo.svg" alt=""> -->
+            
+            <div>
+                <h5>Copyright © CodeAcademy</h5>
+                <h5>Kolkata, WB</h5>
+                <h5>Instagram</h5>
+                <h5>LinkedIn</h5>
+            </div>
+        </div>
+    </div>
+    
+   <!-- SIGN IN PAGE  -->
+    <div class="user-form" id="user-form">
+        <!-- <div class="form-blur"></div> -->
+        <div class="form-box" id="form-box">
             <span class="notify" id="notify"></span>
             <div class="form">
-                <div class="login_div">
-                    <div class="login_text">Login <span class="material-symbols-outlined form_close">close</span></div>
+                <div class="login-div">
+                    <div class="login-text">Sign in<span class="material-symbols-outlined form-close">close</span></div>
                   
-                    <div class="login_acc_yet">Don't have an acount yet? <span >Sign up here</span></div>
-                    <div class="login_line"></div>
+                    <div class="login-acc-yet">Don't have an acount yet? <span id="signup-here">Sign up here</span></div>
+                    <!-- <div class="login-line"></div> -->
                 </div>
                 
-                <div class="email_div">
-                    <div class="email_text">Email address</div>
-                    <input type="email" placeholder="Enter email address" id="email">
+                <div class="email-div">
+                    <div class="email-text">Email address</div>
+                    <input autocomplete="on" type="email" placeholder="Enter email address" id="email">
                 </div>
                 
-                <div class="password_div">
-                    <div class="password_text">Password <span id="forget_link" class="forget_link">Forgot Password?</span></div>
+                <div class="password-div">
+                    <div class="password-text">Password <span id="forget-link" class="forget-link">Forgot Password?</span></div>
                     <input type="password" placeholder="Enter password" id="password">
                 </div>
                 
-                <button id="login_btn" class="login_btn" >Login</button>
-                <!-- <a href="/admin/index.html" id="login_btn" class="login">Login</a> -->
+                <!-- <button id="login-btn" class="login-btn" >Sign In</button> -->
+                <!-- <a href="/admin/index.html" id="login-btn" class="login">Login</a> -->
                 
-                <div class="or_line">
+                <div class="button form-button">
+                    <h4 class="form-sigin-button" id="login-btn"><a href="#"  class="">Sign in</a></h4>
+                </div>
+
+
+                <div class="or-line">
                     <span class=""></span>
                     <div>OR</div>
                     <span class=""></span>
                 </div>
-
-                <button id="signup_btn" class="signup">Create Account</button>
-
-                <div class="google_fb_btn">
-                    <button id="gmail_login_btn" class="gmail_login_btn">Login with Google</button>
-                    <button id="fb_login_btn" class="fb_login_btn">Login with Facebook</button>   
+    
+                <!-- <button id="signup-btn" class="signup">Create Account</button> -->
+    
+                <div class="button form-button google-fb-button">
+                    <h4 class="form-gmail-button" id="gmail-login-btn"><a href="#"  class=""><img src="/assets/images/google.png" alt="Google">Sign in with Google</a></h4>
+                    <h4 class="form-fb-button" id="fb-login-btn"><a href="#"  class=""><img src="/assets/images/facebook.png" alt="Facebook">Sign in with Facebook</a></h4>
                     <p>By signing in or creating an account, you are agreeing to our <span>Terms & Conditions</span> and our <span>Privacy Policy</span>.</p> 
                 </div>
+
               </div>
-              <div class="forget_password">
+              <div class="forget-password">
                   <div>
                       <div class="notify2"></div>
-                      <input type="email" placeholder="enter your email" id="forget_email">
-                      <button id="forget_btn">Forget Password</button>
+                      <input type="email" placeholder="enter your email" id="forget-email">
+                      <button id="forget-btn">Forget Password</button>
                       <a href="./index.html">Login Now</a>
                   </div>
               </div>
         </div>
     </div>
+    
+    <!-- SIGN UP PAGE  -->
+    <div class="signup-form" id="signup-form">
+        <!-- <div class="form-blur"></div> -->
+        <div class="signup-form-box" id="signup-form-box">
+            <span class="notify" id="notify"></span>
+            <div class="form">
+                <div class="signup-div">
+                    <div class="signup-text">Sign up<span class="material-symbols-outlined signup-form-close">close</span></div>
+                    <div class="signup-acc-yet">Already have a account? <span id="signin-here">Sign in here</span></div>
+                    <!-- <div class="signup-line"></div> -->
+                </div>
+                
+                <div class="name-div">
+                    <div class="name-text">Name</div>
+                    <div class="signup-name">
+                        <input autocomplete="on" type="name" placeholder="Enter First Name" id="signup-firstname">
+                        <input autocomplete="on" type="name" placeholder="Enter Last Name" id="signup-lastname">    
+                    </div>
+                </div>
+
+                <div class="username-div">
+                    <div class="username-text">Username</div>
+                    <input autocomplete="on" type="name" placeholder="Enter username" id="signup-username">
+                </div>
+
+                <div class="email-div">
+                    <div class="email-text">Email address</div>
+                    <input autocomplete="on" type="email" placeholder="Enter email address" id="signup-email">
+                </div>
+                
+                <div class="password-div">
+                    <div class="password-text">Password </div>
+                    <input type="password" placeholder="Enter password" id="signup-password">
+                </div>
+                
+                <div class="confirm-password-div">
+                    <div class="confirm-password-text">Confirm Password </div>
+                    <input type="password" placeholder="Confirm password" id="confirm-password">
+                </div>
+                <!-- <button id="login-btn" class="login-btn" >Sign In</button> -->
+                <!-- <a href="/admin/index.html" id="login-btn" class="login">Login</a> -->
+                
+                <div class="button form-button">
+                    <h4 class="form-sigup-button signup" id="signup-btn"><a href="#"  class="">Sign up</a></h4>
+                </div>
 
 
-    <div class="admin-page">
+                <div class="or-line">
+                    <span class=""></span>
+                    <div>OR</div>
+                    <span class=""></span>
+                </div>
+        
+                <div class="button form-button google-fb-button">
+                    <h4 class="form-gmail-button" id="signup-gmail-login-btn"><a href="#"  class=""><img src="/assets/images/google.png" alt="Google">Sign in with Google</a></h4>
+                    <h4 class="form-fb-button" id="signup-fb-login-btn"><a href="#"  class=""><img src="/assets/images/facebook.png" alt="Facebook">Sign in with Facebook</a></h4>
+                </div>
+
+            </div>
+              
+        </div>
+    </div>
+
+    <!-- <div class="admin-page">
         <div class="admin-section">
             <h1>Hello Admin</h1>
             <button id="logout" class="logout">Logout</button>
         </div>
-    </div>
+    </div> -->
 
-
-
-    
-
-
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="main.js"></script>
 </body>
 </html>
