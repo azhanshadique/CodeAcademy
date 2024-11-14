@@ -272,8 +272,8 @@ onAuthStateChanged(auth,(user)=>{
     //   loader.style.top = "-100%"
     // }, 800)
     // closeSignupBox();
-    console.log(user.photoURL);
-    getUserData(user.uid, user.photoUrl);
+    // console.log(user.photoURL);
+    getUserData(user.uid, user.photoURL);
 
   }
 })
