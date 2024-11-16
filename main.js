@@ -273,7 +273,7 @@ onAuthStateChanged(auth,(user)=>{
     // }, 800)
     // closeSignupBox();
     console.log(user.photoURL);
-    getUserData(user.uid, user.photoUrl);
+    getUserData(user.uid, user.photoURL);
 
   }
 })
