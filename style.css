@@ -85,11 +85,11 @@
   'opsz' 24
 }
 
-.logout-icon {
+.user-profile-icon, .view-profile-icon {
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
-    'GRAD' -25,
+    'GRAD' 0,
     'opsz' 10
     
   }
@@ -379,11 +379,11 @@ header{
 .button h4:hover a {
     color: #fff; 
 }
-.logout-icon {
+.user-profile-icon {
     position: relative;
     z-index: 9;
 }
-.user-profile-box .button h4:hover .logout-icon {
+.user-profile-box .button h4:hover .user-profile-icon {
     color: white;
 }
 nav h3 {
@@ -449,7 +449,7 @@ nav h3 {
     /* display: none; */
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 0.25rem;
 }
@@ -488,20 +488,36 @@ nav h3 {
 
 .userprofile-signout-button {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: start;
     align-items: center;
-    gap: 1px;
+    gap: 10px;
     width: 100%;
 }
-.signout-button {
+.signout-button, .view-profile {
     width: 100%;
+    text-align: center;
 }
 
-.logout-icon {
+.user-profile-icon {
     margin-left: -4px;
 }
-
+.user-profile-box .button .view-profile {
+    padding: 0;
+}
+.view-profile a {
+    /* background: red; */
+    padding: 10px 40px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.view-profile a span {
+    padding-right: 5px;
+}
+.signout-button span {
+    padding-left: 20px;
+}
 
 .show {display: block;}
 

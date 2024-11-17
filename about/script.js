@@ -525,17 +525,7 @@ signup_fb_login_btn.addEventListener('click',loginWithFacebook);
     signup_form_close.addEventListener('click', closeSignupBox)
 
     
-    
-
   
-function loaderAnimation() {
-  var loader = document.querySelector("#loader")
-  setTimeout(function () {
-      loader.style.top = "-100%"
-  }, 4200)
-}
-
-loaderAnimation()
 
 
 function loaderAnimation2() {
