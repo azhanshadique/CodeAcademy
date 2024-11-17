@@ -1,6 +1,6 @@
-//Alternate proxy url
-//"https://cors-anywhere.herokuapp.com/" not public
-//https://corsproxy.io/?
+// Alternate proxy url
+// "https://cors-anywhere.herokuapp.com/" not public
+// https://corsproxy.io/? 
 const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
 
 document.getElementById("fetchDataButton").addEventListener("click", fetchData);
@@ -25,6 +25,12 @@ function fetchData() {
     const encodedGfgUrl = encodeURIComponent(gfgApiUrl);
     const finalGfgUrl = proxyUrl + encodedGfgUrl;
 
+    // Initialize variables to hold totals
+    let totalEasySolved = 0;
+    let totalMediumSolved = 0;
+    let totalHardSolved = 0;
+    let totalProblemsSolved = 0;
+
     // Fetch GFG Data
     fetch(finalGfgUrl)
         .then(response => response.json())
@@ -33,7 +39,7 @@ function fetchData() {
             console.log("GFG Data:", gfgData);
 
             // Render GFG Data
-            document.getElementById("gfgData").innerHTML = `
+            document.getElementById("gfgData").innerHTML = ` 
                 <p><strong>User Name:</strong> ${gfgData.info.userName}</p>
                 <p><strong>Coding Score:</strong> ${gfgData.info.codingScore}</p>
                 <p><strong>Total Problems Solved:</strong> ${gfgData.info.totalProblemsSolved}</p>
@@ -49,6 +55,12 @@ function fetchData() {
                     <li><strong>Hard:</strong> ${gfgData.solvedStats.hard.count}</li>
                 </ul>
             `;
+
+            // Calculate totals from GFG data
+            totalEasySolved += gfgData.solvedStats.easy.count;
+            totalMediumSolved += gfgData.solvedStats.medium.count;
+            totalHardSolved += gfgData.solvedStats.hard.count;
+            totalProblemsSolved += Number(gfgData.info.totalProblemsSolved); // Ensure it's treated as a number
         })
         .catch(error => {
             console.error("Error fetching GFG data:", error);
@@ -81,26 +93,25 @@ function fetchData() {
         .then(data => {
             console.log("LeetCode JSON Data:", data);
 
-            // Render LeetCode Data in GFG-like format
-            document.getElementById("leetCodeRawOutput").style.display = 'block';
-            document.getElementById("leetCodeJsonData").innerHTML = `
-                <p><strong>Total Problems Solved:</strong> ${data.totalSolved}</p>
-                <p><strong>Total Questions:</strong> ${data.totalQuestions}</p>
-                <p><strong>Total Easy Problems Solved:</strong> ${data.easySolved}</p>
-                <p><strong>Total Easy Questions:</strong> ${data.totalEasy}</p>
-                <p><strong>Total Medium Problems Solved:</strong> ${data.mediumSolved}</p>
-                <p><strong>Total Medium Questions:</strong> ${data.totalMedium}</p>
-                <p><strong>Total Hard Problems Solved:</strong> ${data.hardSolved}</p>
-                <p><strong>Total Hard Questions:</strong> ${data.totalHard}</p>
-                <p><strong>Acceptance Rate:</strong> ${data.acceptanceRate}%</p>
-                <p><strong>Ranking:</strong> ${data.ranking}</p>
-                <p><strong>Contribution Points:</strong> ${data.contributionPoints}</p>
-                <p><strong>Reputation:</strong> ${data.reputation}</p>
+            // Calculate totals from LeetCode data
+            totalEasySolved += data.easySolved;
+            totalMediumSolved += data.mediumSolved;
+            totalHardSolved += data.hardSolved;
+            totalProblemsSolved += Number(data.totalSolved); // Ensure it's treated as a number
+
+            // Display Total Progress in the new container
+            document.getElementById("totalProgress").innerHTML = `
+                <h3>Total Progress</h3>
+                <ul>
+                    <li><strong>Total Easy Problems Solved:</strong> ${totalEasySolved}</li>
+                    <li><strong>Total Medium Problems Solved:</strong> ${totalMediumSolved}</li>
+                    <li><strong>Total Hard Problems Solved:</strong> ${totalHardSolved}</li>
+                    <li><strong>Total Problems Solved:</strong> ${totalProblemsSolved}</li>
+                </ul>
             `;
         })
         .catch(error => {
             console.error("Error fetching LeetCode JSON data:", error);
-            document.getElementById("leetCodeRawOutput").style.display = 'none';
-            document.getElementById("leetCodeJsonData").innerHTML = "<p style='color: red;'>Error fetching LeetCode Raw JSON data. Please try again later.</p>";
+            document.getElementById("leetCodeData").innerHTML = "<p style='color: red;'>Error fetching LeetCode JSON data. Please try again later.</p>";
         });
 }
