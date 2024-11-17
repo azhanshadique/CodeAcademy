@@ -19,6 +19,7 @@ function fetchData() {
     // Construct API URLs
     const gfgApiUrl = `https://geeks-for-geeks-api.vercel.app/${gfgUsername}`;
     const leetCodeApiUrl = `https://leetcard.jacoblin.cool/${leetCodeUsername}?ext=heatmap&theme=forest`;
+    const leetCodeJsonUrl = `https://leetcode-stats-api.herokuapp.com/${leetCodeUsername}`;
 
     // Encode the GFG API URL
     const encodedGfgUrl = encodeURIComponent(gfgApiUrl);
@@ -54,7 +55,7 @@ function fetchData() {
             document.getElementById("gfgData").innerHTML = "<p style='color: red;'>Error fetching GFG data. Please try again later.</p>";
         });
 
-    // Fetch LeetCode Data
+    // Fetch LeetCode Image (Heatmap)
     try {
         const leetCodeOutputDiv = document.getElementById("leetCodeData");
 
@@ -70,7 +71,36 @@ function fetchData() {
         // Append the image to the output div
         leetCodeOutputDiv.appendChild(leetCodeImage);
     } catch (error) {
-        console.error("Error fetching LeetCode data:", error);
-        document.getElementById("leetCodeData").innerHTML = "<p style='color: red;'>Error fetching LeetCode data. Please try again later.</p>";
+        console.error("Error fetching LeetCode image:", error);
+        document.getElementById("leetCodeData").innerHTML = "<p style='color: red;'>Error fetching LeetCode image. Please try again later.</p>";
     }
+
+    // Fetch LeetCode JSON Data (Text-based)
+    fetch(leetCodeJsonUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log("LeetCode JSON Data:", data);
+
+            // Render LeetCode Data in GFG-like format
+            document.getElementById("leetCodeRawOutput").style.display = 'block';
+            document.getElementById("leetCodeJsonData").innerHTML = `
+                <p><strong>Total Problems Solved:</strong> ${data.totalSolved}</p>
+                <p><strong>Total Questions:</strong> ${data.totalQuestions}</p>
+                <p><strong>Total Easy Problems Solved:</strong> ${data.easySolved}</p>
+                <p><strong>Total Easy Questions:</strong> ${data.totalEasy}</p>
+                <p><strong>Total Medium Problems Solved:</strong> ${data.mediumSolved}</p>
+                <p><strong>Total Medium Questions:</strong> ${data.totalMedium}</p>
+                <p><strong>Total Hard Problems Solved:</strong> ${data.hardSolved}</p>
+                <p><strong>Total Hard Questions:</strong> ${data.totalHard}</p>
+                <p><strong>Acceptance Rate:</strong> ${data.acceptanceRate}%</p>
+                <p><strong>Ranking:</strong> ${data.ranking}</p>
+                <p><strong>Contribution Points:</strong> ${data.contributionPoints}</p>
+                <p><strong>Reputation:</strong> ${data.reputation}</p>
+            `;
+        })
+        .catch(error => {
+            console.error("Error fetching LeetCode JSON data:", error);
+            document.getElementById("leetCodeRawOutput").style.display = 'none';
+            document.getElementById("leetCodeJsonData").innerHTML = "<p style='color: red;'>Error fetching LeetCode Raw JSON data. Please try again later.</p>";
+        });
 }
