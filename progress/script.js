@@ -26,6 +26,7 @@ function fetchData() {
     const finalGfgUrl = proxyUrl + encodedGfgUrl;
 
     // Initialize variables to hold totals
+    let totalBasicSolved = 0;
     let totalEasySolved = 0;
     let totalMediumSolved = 0;
     let totalHardSolved = 0;
@@ -57,6 +58,7 @@ function fetchData() {
             `;
 
             // Calculate totals from GFG data
+            totalBasicSolved += gfgData.solvedStats.basic.count;
             totalEasySolved += gfgData.solvedStats.easy.count;
             totalMediumSolved += gfgData.solvedStats.medium.count;
             totalHardSolved += gfgData.solvedStats.hard.count;
@@ -103,6 +105,7 @@ function fetchData() {
             document.getElementById("totalProgress").innerHTML = `
                 <h3>Total Progress</h3>
                 <ul>
+                    <li><strong>Total Basic Problems Solved:</strong> ${totalBasicSolved}</li>
                     <li><strong>Total Easy Problems Solved:</strong> ${totalEasySolved}</li>
                     <li><strong>Total Medium Problems Solved:</strong> ${totalMediumSolved}</li>
                     <li><strong>Total Hard Problems Solved:</strong> ${totalHardSolved}</li>
