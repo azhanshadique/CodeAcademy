@@ -96,37 +96,47 @@
 
         <!-- SECTION - 2 -->
         <div class="section-profile-tracker">
-            <div class="section-contact">
-                <div class="contact-heading">
-                    <h2 class="">Profile Tracker</h2>
-                    <p class="">Register your platforms username to get platform specific progress.</p>
+            <div class="left-profile-tracker">
+
+                <div class="section-contact">
+                    <div class="contact-heading">
+                        <h2 class="">Profile Tracker</h2>
+                        <p class="">Register your platforms username to get platform specific progress.</p>
+                    </div>
+                    <form class="form">
+                        <div class="gfg-div name-div">
+                            <label for="gfgUsername" class="">GeeksforGeeks</label>
+                            <div class="relative" data-placeholder="https://www.geeksforgeeks.org/user/">
+                                <input type="text" id="gfgUsername" class="gfg-input-field" placeholder="username">
+                            </div>
+                        </div>
+                        <div class="leetcode-div email-div">
+                            <label for="leetCodeUsername" class="">LeetCode</label>
+                            <div class="relative" data-placeholder="https://leetcode.com/u/">
+                                <input type="text" id="leetCodeUsername" class="leetcode-input-field"
+                                    placeholder="username" name="name" value="">
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="submit-div button" id="fetchDataButton">
+                            <!-- <button type="submit" class="">Submit</button> -->
+                            <h4><a href="#" class="nav_login_button">Submit</a></h4>
+                        </div>
+                    </form>
+                    
+                    <div id="moving-circle"></div>
                 </div>
-                <form class="form">
-                    <div class="gfg-div name-div">
-                        <label for="gfgUsername" class="">GeeksforGeeks</label>
-                        <div class="relative" data-placeholder="https://www.geeksforgeeks.org/user/">
-                            <input type="text" id="gfgUsername" class="gfg-input-field" placeholder="username">
-                        </div>
-                    </div>
-                    <div class="leetcode-div email-div">
-                        <label for="leetCodeUsername" class="">LeetCode</label>
-                        <div class="relative" data-placeholder="https://leetcode.com/u/">
-                            <input type="text" id="leetCodeUsername" class="leetcode-input-field"
-                                placeholder="username" name="name" value="">
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    
-                    <div class="submit-div button" id="fetchDataButton">
-                        <!-- <button type="submit" class="">Submit</button> -->
-                        <h4><a href="#" class="nav_login_button">Submit</a></h4>
-                    </div>
-                </form>
-                
-                <div id="moving-circle"></div>
+
+                <div id="totalProgress">
+                    <h2>Total Progress</h2>
+                    <div id="totalProgressData"></div>
+                </div>
+
             </div>
+            
             <div class="section-tracker">
                 <!-- <div id="container"> -->
                     <div id="gfgOutput">

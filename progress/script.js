@@ -149,7 +149,13 @@ const scroll = new LocomotiveScroll({
     }
   }
 
+
+
 // API FETCH DATA 
+
+// Alternate proxy url
+// "https://cors-anywhere.herokuapp.com/" not public
+// https://corsproxy.io/? 
 
   const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
 
@@ -160,6 +166,15 @@ const scroll = new LocomotiveScroll({
       const gfgUsername = document.getElementById("gfgUsername").value.trim();
       const leetCodeUsername = document.getElementById("leetCodeUsername").value.trim();
   
+      
+      // Initialize variables to hold totals
+      let totalBasicSolved = 0;
+      let totalEasySolved = 0;
+      let totalMediumSolved = 0;
+      let totalHardSolved = 0;
+      let totalProblemsSolved = 0;
+
+
       // Validate inputs
       if (!gfgUsername && !leetCodeUsername) {
         alert("Please enter GFG or LeetCode username.");
@@ -172,6 +187,7 @@ const scroll = new LocomotiveScroll({
 
 
         const leetCodeApiUrl = `https://leetcard.jacoblin.cool/${leetCodeUsername}?ext=heatmap&theme=forest`;
+
 
         // Fetch LeetCode Data
           try {
@@ -208,7 +224,7 @@ const scroll = new LocomotiveScroll({
         .then(response => response.json())
         .then(data => {
             const gfgData = JSON.parse(data.contents); // The actual GFG API response is in "contents"
-            console.log("GFG Data:", gfgData);
+            // console.log("GFG Data:", gfgData);
 
             // Render GFG Data
             document.getElementById("gfgData").innerHTML = `
@@ -227,19 +243,63 @@ const scroll = new LocomotiveScroll({
                     <li><strong>Hard:</strong> ${gfgData.solvedStats.hard.count}</li>
                 </ul>
             `;
+
+            // Calculate totals from GFG data
+            totalBasicSolved += gfgData.solvedStats.basic.count;
+            totalEasySolved += gfgData.solvedStats.easy.count;
+            totalMediumSolved += gfgData.solvedStats.medium.count;
+            totalHardSolved += gfgData.solvedStats.hard.count;
+            totalProblemsSolved += Number(gfgData.info.totalProblemsSolved); // Ensure it's treated as a number
+
         })
         .catch(error => {
             console.error("Error fetching GFG data:", error);
             document.getElementById("gfgData").innerHTML = "<p style='color: red;'>Error fetching GFG data. Please try again later.</p>";
         });
+
+
       }
       else {
         // alert(0);
         document.getElementById("leetCodeOutput").style = " display: flex; margin-top: 10vw";
 
       }
-     
+
+      if (gfgUsername || leetCodeUsername) {
+        document.getElementById("totalProgress").style.display = "flex";
+
+        const leetCodeJsonUrl = `https://leetcode-stats-api.herokuapp.com/${leetCodeUsername}`;
+        // Fetch LeetCode JSON Data (Text-based)
+        fetch(leetCodeJsonUrl)
+        .then(response => response.json())
+        .then(data => {
+            // console.log("LeetCode JSON Data:", data);
+
+
+            // Calculate totals from LeetCode data
+            totalEasySolved += data.easySolved;
+            totalMediumSolved += data.mediumSolved;
+            totalHardSolved += data.hardSolved;
+            totalProblemsSolved += Number(data.totalSolved); // Ensure it's treated as a number
+
+            // Display Total Progress in the new container
+            document.getElementById("totalProgressData").innerHTML = `
+                <ul>
+                    <li><strong>Total Basic Problems Solved:</strong> ${totalBasicSolved}</li>
+                    <li><strong>Total Easy Problems Solved:</strong> ${totalEasySolved}</li>
+                    <li><strong>Total Medium Problems Solved:</strong> ${totalMediumSolved}</li>
+                    <li><strong>Total Hard Problems Solved:</strong> ${totalHardSolved}</li>
+                    <li><strong>Total Problems Solved:</strong> ${totalProblemsSolved}</li>
+                </ul>
+            `;
+        })
+        .catch(error => {
+            console.error("Error fetching LeetCode JSON data:", error);
+            document.getElementById("leetCodeData").innerHTML = "<p style='color: red;'>Error fetching LeetCode JSON data. Please try again later.</p>";
+        });
+      }
       
 }
   
-  
+
+

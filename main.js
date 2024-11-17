@@ -1,3 +1,5 @@
+const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
+
 const scroll = new LocomotiveScroll({
   el: document.querySelector('#main'),
   smooth: true
