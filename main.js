@@ -207,8 +207,9 @@ function getUserData(uid, img_src){
             
           }
           else {
-            // console.log(img_src);
             document.querySelector('.user-image').src = img_src; 
+            // console.log(`${img_src}`);
+            // console.log(document.querySelector('.user-image').src);
             // console.log(document.querySelector('.user-image').src);
           }
 
