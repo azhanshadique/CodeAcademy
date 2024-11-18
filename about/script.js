@@ -1,5 +1,3 @@
-const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
-
 const scroll = new LocomotiveScroll({
   el: document.querySelector('#main'),
   smooth: true
@@ -527,17 +525,7 @@ signup_fb_login_btn.addEventListener('click',loginWithFacebook);
     signup_form_close.addEventListener('click', closeSignupBox)
 
     
-    
-
   
-function loaderAnimation() {
-  var loader = document.querySelector("#loader")
-  setTimeout(function () {
-      loader.style.top = "-100%"
-  }, 4200)
-}
-
-loaderAnimation()
 
 
 function loaderAnimation2() {
