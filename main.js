@@ -1,197 +1,193 @@
-const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
+///const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
 
 const scroll = new LocomotiveScroll({
   el: document.querySelector('#main'),
   smooth: true
 });
 
-// window.scroll({
-//   top: 100,
-//   left: 100,
-//   behavior: "smooth",
-// });
-
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import {getAuth, 
-    createUserWithEmailAndPassword, 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
     signInWithEmailAndPassword, 
     onAuthStateChanged, 
     signOut,
     sendPasswordResetEmail,
     GoogleAuthProvider,
     signInWithPopup,
-    FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    FacebookAuthProvider
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-import { getDatabase, set, get, ref } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
-import {} from "https://apis.google.com/js/platform.js?onload=init";
-
-  // import {} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-
-  const firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBPACURk0fECwcx7mdnvgKvzoAwFIZ-wfc",
     authDomain: "authlearn-c0620.firebaseapp.com",
     projectId: "authlearn-c0620",
     storageBucket: "authlearn-c0620.appspot.com",
     messagingSenderId: "1057467852931",
     appId: "1:1057467852931:web:6b68ef4f55754653c753b6"
-  };
+};
 
-  // Initialize Firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// console.log(app);
 const auth = getAuth(app);
+const dbRealtime = getDatabase(app);
+const dbFirestore = getFirestore(app);
 
-const db = getDatabase(app);
-
-// console.log(db);
-
-function writeUserData(userID, firstname, lastname, username, email){
-  set(ref(db,'users/' + userID), {
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      email: email
-  })
+// Function to write general data to Realtime Database
+function writeUserData(userID, firstname, lastname, username, email) {
+    set(ref(dbRealtime, 'users/' + userID), {
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        email: email
+    })
+    .then(() => {
+        console.log("Data written successfully to Realtime Database.");
+    })
+    .catch((error) => {
+        console.error("Error writing data to Realtime Database:", error);
+    });
 }
-// console.log("GOOD");
+
+// Function to write specific user data to Firestore
+function createUserData(userID, firstname, lastname, username, email) {
+  const currentDate = new Date(); // Get the current timestamp as a Date object
+  const formattedDate = currentDate.toISOString(); // Convert to ISO 8601 format (e.g., '2025-01-15T12:34:56.789Z')
+
+  try {
+      // Add detailed user data to Firestore
+      setDoc(doc(dbFirestore, "users", userID), {
+          firstname: firstname,
+          lastname: lastname,
+          username: username,
+          email: email,
+          createdDate: formattedDate,  // Created date in human-readable format
+          updatedDate: formattedDate,  // Updated date in human-readable format
+          solvedProblems: []           // Initialize solvedProblems as an empty array
+      });
+      console.log("User data written successfully to Firestore.");
+  } catch (error) {
+      console.error("Error writing user data to Firestore:", error);
+  }
+}
+
+
+  
 
 // SIGN UP USER 
 const notify = document.querySelector('#notify');
 // notify.innerHTML="gfg";
 
-function createUser(){
-  
-      const firstname = document.querySelector('#signup-firstname').value;
-    const lastname = document.querySelector('#signup-lastname').value;
-    const username = document.querySelector('#signup-username').value;
-
+function createUser() {
+  const firstname = document.querySelector('#signup-firstname').value;
+  const lastname = document.querySelector('#signup-lastname').value;
+  const username = document.querySelector('#signup-username').value;
   const email = document.querySelector('#signup-email').value;
   const password = document.querySelector('#signup-password').value;
-
   const confirm_password = document.querySelector('#confirm-password').value;
 
-  // console.log(email);
-  // console.log(password);
-
-  if(firstname=="" || username=="" || email=="" || password=="" || confirm_password=="") {
-    notify.innerText = "Required"
+  if (firstname == "" || username == "" || email == "" || password == "" || confirm_password == "") {
+    alert("All fields are required.");
     console.log("Required");
-  }
-  else if(password != confirm_password) {
+  } else if (password != confirm_password) {
+    alert("Passwords do not match.");
     console.log("Passwords don't match");
-  }
-  else{
-    createUserWithEmailAndPassword(auth, email, password).then((userCredentials)=>{
-      const user = userCredentials.user;
+  } else {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
 
-      if(user){
-        var currentuser = {
-          firstname: document.querySelector('#signup-firstname').value,
-          lastname: document.querySelector('#signup-lastname').value,
-          username: document.querySelector('#signup-username').value,
-          email: user.email,
-          uid: user.uid,
+        if (user) {
+          const currentuser = {
+            firstname: firstname,
+            lastname: lastname,
+            username: username,
+            email: user.email,
+            uid: user.uid,
+          };
+
+          // Write to Realtime Database
+          writeUserData(user.uid, firstname, lastname, username, user.email);
+
+          // Write to Firestore Database
+          createUserData(user.uid, firstname, lastname, username, user.email);
+
+          // Send Email Verification
+          sendEmailVerification(user)
+            .then(() => {
+              alert("A verification email has been sent to your email address. Please verify before logging in.");
+              console.log("Verification email sent.");
+            })
+            .catch((error) => {
+              console.error("Error sending verification email:", error);
+            });
+
+          console.log("User Created Successfully");
+          alert("User created successfully. Please verify your email to log in.");
+          closeSignupBox();
+          showLoginBox();
+          logoutUser(); // Log out the user until they verify their email
+        } else {
+          alert("Something went wrong. Please try again.");
         }
-        writeUserData(user.uid, currentuser.firstname, currentuser.lastname, currentuser.username, currentuser.email);
-        console.log("User Created Successfully");
-        notify.innerText= "User Created Successfully";
-        closeSignupBox();
-        showLoginBox();
-        logoutUser();        
-      }
-      else{
-        notify.innerText = "Something is wrong";
-      }
-    }).catch((error)=>{
-      console.log(error.message);
-    })
+      })
+      .catch((error) => {
+        console.error("Error creating user:", error.message);
+        alert(error.message);
+      });
   }
 }
+
 
 const signup_btn = document.querySelector("#signup-btn");
 signup_btn.addEventListener('click', createUser);
 
-// function readData(){
-//   const userRef = ref(db, 'users');
-
-//   get(userRef).then((snapshot) =>{
-//       snapshot.forEach((childsnapShot)=>{
-//           console.log(childsnapShot.val());
-//       })
-//   })
-// }
-// readData();
-
-// function writeUserData(user) {
-//   firebase.database().ref('users/' + user.uid).set(user).catch(error => {
-//       console.log(error.message)
-//   });
-// }
-
-
-
-
 
 // LOGIN USER
-
-function loginUser(){
-  // alert('pp');
+function loginUser() {
   const email = document.querySelector('#email').value;
-  // console.log(email);
   const password = document.querySelector('#password').value;
-  // console.log(password);
-  if(email == "" || password == ""){
-    notify.innerText = "Please provide email and password"
-    
-  }
-  else{
-    signInWithEmailAndPassword(auth, email, password).then((userCredentials)=>{
-      const user = userCredentials.user;
-      if(user){
-        // console.log('hehe');
-        // notify.innerText = "User Loged In";
-        notify.innerText = "";
-        // loaderAnimation();
-        getUserData(user.uid, null);
-          // location.reload();
-      }
-      else{
-        notify.innerText = "Email or Password is wrong";
-      }
-    }).catch((error)=>{
-      console.log(error.message);
-    })
-  }
+  const notify = document.querySelector('#notify'); // Ensure you have an element with id 'notify'
 
+  if (email === "" || password === "") {
+    alert("Please provide email and password");
+  } else {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+
+        if (user) {
+          // Check if email is verified
+          if (user.emailVerified) {
+            alert("Login successful!");
+            notify.innerText = ""; // Clear notifications on successful login
+            getUserData(user.uid, null); // Fetch user data
+          } else {
+            alert("Your email is not verified. Please verify your email before logging in.");
+            logoutUser();
+          }
+        }
+      })
+      .catch((error) => {
+        alert("Invalid credentials. Please try again.");
+        console.error("Invalid login attempt:", error);
+      });
+  }
 }
+
+
+
 
 
 const login_btn = document.querySelector('#login-btn');
 login_btn.addEventListener('click', loginUser);
 
-// AFTER LOGIN
-
-// onAuthStateChanged(auth, (user)=>{
-//   alert(0);
-//   if(user){
-//     console.log('ok');
-//     document.querySelector('#main').style.display = "none";
-//     document.querySelector('.user-form').style.display = "none";
-//     document.querySelector('.admin-section').style.display = "flex";
-//   }
-// })
-
-
-
 function getUserData(uid, img_src){
-  const userRef = ref(db, 'users/' + uid);
-    // console.log(uid);
+  const userRef = ref(dbRealtime, 'users/' + uid);
     get(userRef).then((snapshot) =>{
-      // snapshot.forEach((childsnapShot)=>{
-        // if(snapshot.exists()) {
-          // console.log("inside-getuserdata ");
-          // console.log(childsnapShot.val());
           var uservalue = snapshot.val().firstname;
           uservalue = uservalue +" "+ snapshot.val().lastname;
           document.getElementById('user-profile-name').style.width = ((uservalue.length + 3) * 8) + 'px';
@@ -200,83 +196,34 @@ function getUserData(uid, img_src){
           var useremail = snapshot.val().email;
           document.getElementById('user-profile-email').style.width = ((useremail.length + 1) * 8) + 'px';
           document.getElementById('user-profile-email').value = useremail;
-          
-          
-          // console.log(img_src);
           if(img_src == null) {
-            // console.log('nullhheheh');
             document.querySelector('.user-image').src = "/assets/images/user6.png";
             
           }
           else {
             document.querySelector('.user-image').src = img_src; 
             document.querySelector('.user-image').srcset = img_src; 
-            // console.log(`${img_src}`);
-            // console.log(document.querySelector('.user-image').src);
-            // console.log(document.querySelector('.user-image').srcset);
           }
 
-        // }
-        // else 
-          // console.log("user not in database");
-      // })
   }).catch((error)=>{
     console.log(error.message);
   })
 }
 
-
 onAuthStateChanged(auth,(user)=>{
   if(user){
-    // var currentuser = {
-    //   firstname: document.querySelector('#signup-firstname').value,
-    //   lastname: document.querySelector('#signup-lastname').value,
-    //   username: document.querySelector('#signup-username').value,
-    //   email: user.email,
-    //   uid: user.uid,
-    // }
-    // writeUserData(user.uid, "AdnanG", "Khan", "adnankhan", user.email);
-
-
-    // console.log(user.uid);
-    // getUserData(user.uid, user.photoURL);
-    
-    // document.querySelector('.user_form').classList.add('hide');
-    
-    // console.log(user.uid);
-    //    console.log(user.email);
-    // closeLoginBox();
     notify.innerText = "";
     notify2.innerText = "";
     document.getElementById("user-form").style.animation = "slideToDown 1s ease forwards";
     document.querySelector('#main').classList.remove('showLoginBoxMain');
     document.querySelector('#email').value = "";
     document.querySelector('#password').value = "";
-    
-
-
     document.getElementById("signup-form").style.animation = "slideToDown 1s ease forwards";
     document.querySelector('#main').classList.remove('showLoginBoxMain');
     document.querySelector('#email').value = "";
     document.querySelector('#password').value = "";
-    
-    // document.querySelector('#main').style.display = "none";
-    // document.querySelector('#footer').style.display = "none";
-
-    // document.querySelector('.user_form').style.display = "none";
-    // document.querySelector('.admin-section').style.display = "flex";
-
     document.querySelector('.user-profile').style.display = "flex";
     document.querySelector('.nav-list2').style.display = "none";
-
-    // document.querySelector('.loader-content1').style.display = "none";
-    // document.querySelector('.loader-content2').style.display = "none";
-    // document.querySelector('.loader-content3').style.display = "none";
-    // setTimeout(function () {
-    //   loader.style.top = "-100%"
-    // }, 800)
-    // closeSignupBox();
-    // console.log(user.photoURL);
     getUserData(user.uid, user.photoURL);
 
   }
@@ -287,30 +234,11 @@ onAuthStateChanged(auth,(user)=>{
 function logoutUser(){
 
   signOut(auth).then(()=>{
-    // console.log("signout");
-    // document.querySelector('.user_form').classList.remove('hide');
-    // document.querySelector('.admin_page').classList.remove('show');
-
     notify.innerText = "";
     notify2.innerText = "";
-    // document.querySelector('#main').style.display = "block";
     document.querySelector('#main').classList.remove('showLoginBoxMain');
-    
-    // document.querySelector('.user_form').style.display = "block";
-    // document.querySelector('.user_form').classList.remove('showLoginBox');
-    // document.querySelector('.nav-login-button').style.visibility = "visible";
-
-    // document.querySelector('.admin-section').style.display = "none";
     document.querySelector('.user-profile').style.display = "none";
     document.querySelector('.nav-list2').style.display = "flex";
-
-    // document.querySelector('.loader-content1').style.display = "none";
-    // document.querySelector('.loader-content2').style.display = "none";
-    // document.querySelector('.loader-content3').style.display = "none";
-    // setTimeout(function () {
-    //   loader.style.top = "-100%"
-    // }, 800)
-    
     document.getElementById('user-profile-name').value = "";
     document.querySelector('.user-image').src = null;  
     document.getElementById('user-profile-email').value = "";
@@ -332,7 +260,6 @@ function showForgetPasswordForm(){
 }
 const forget_link = document.querySelector('#forget-link');
 forget_link.addEventListener('click',showForgetPasswordForm);
-
 
 function forgetPassword(){
   const email = document.querySelector('#forget-email').value;
@@ -362,19 +289,12 @@ function loginWithGoogle(){
     const token = credential.accessToken;
     const user = result.user;
 
-    // console.log("Sign-in result: ", result._tokenResponse);
-
-      const currentuser = result._tokenResponse;
-      // console.log("User Name: ", currentuser.displayName);
-      // console.log("User Email: ", currentuser.email);
-      // console.log("User Profile Picture: ", currentuser.photoUrl);
-
-    const userRef = ref(db, 'users/' + user.uid);
+    const currentuser = result._tokenResponse;
+    const userRef = ref(dbRealtime, 'users/' + user.uid);
     get(userRef).then((snapshot) =>{
-      // snapshot.forEach((childsnapShot)=>{
         if(!snapshot.exists()) {
           writeUserData(user.uid, currentuser.firstName, currentuser.lastName, currentuser.displayName, currentuser.email);
-          
+          createUserData(user.uid, currentuser.firstName, currentuser.lastName, currentuser.displayName, currentuser.email);
           var uservalue = currentuser.displayName;
           document.getElementById('user-profile-name').style.width = ((uservalue.length + 3) * 8) + 'px';
           document.getElementById('user-profile-name').value = uservalue;
@@ -387,14 +307,6 @@ function loginWithGoogle(){
           getUserData(user.uid, currentuser.photoUrl);
           // console.log('acc already exists');
       })
-    // console.log(user.uid);
-    
-
-
-    
-
-
-
   }).catch((error)=>{
     console.log(error.message);
   })
@@ -417,6 +329,25 @@ function loginWithFacebook(){
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
+
+    const currentuser = result._tokenResponse;
+    const userRef = ref(dbRealtime, 'users/' + user.uid);
+    get(userRef).then((snapshot) =>{
+        if(!snapshot.exists()) {
+          writeUserData(user.uid, currentuser.firstName, currentuser.lastName, currentuser.displayName, currentuser.email);
+          createUserData(user.uid, currentUser.firstName, currentUser.lastName, currentUser.displayName, currentUser.email);
+          var uservalue = currentuser.displayName;
+          document.getElementById('user-profile-name').style.width = ((uservalue.length + 3) * 8) + 'px';
+          document.getElementById('user-profile-name').value = uservalue;
+          document.getElementById('user-profile-email').style.width = ((snapshot.val().email.length + 1) * 8) + 'px';
+          document.getElementById('user-profile-email').value = currentuser.email;
+          document.querySelector('.user-image').src = currentuser.photoUrl;
+
+        }
+        else
+          getUserData(user.uid, currentuser.photoUrl);
+          // console.log('acc already exists');
+      })
   }).catch((error)=>{
     console.log(error.message);
   })
@@ -426,19 +357,6 @@ fb_login_btn.addEventListener('click',loginWithFacebook);
 
 const signup_fb_login_btn = document.querySelector("#signup-fb-login-btn")
 signup_fb_login_btn.addEventListener('click',loginWithFacebook); 
-// onAuthStateChanged(auth,(user)=>{
-//   if(user){
-//     console.log("yes");
-//     // document.querySelector('.user_form').classList.add('hide');
-//     // document.querySelector('.admin_page').classList.add('show');
-//   }
-//   else{
-//     console.log("sorry");
-//   }
-// })
-
-
-
 
   // SHOW LOGIN BOX
   function showLoginBox(){
@@ -446,13 +364,6 @@ signup_fb_login_btn.addEventListener('click',loginWithFacebook);
     document.querySelector('#main').classList.add('showLoginBoxMain');
     document.querySelector('.user-form').classList.add('showLoginBox');
     document.getElementById("user-form").style.animation = "slideFromTop 1s ease forwards";
-    
-    // notify.innerText = "";
-    // notify2.innerText = "";
-  
-  
-    // document.querySelector('.nav_login_button').classList.add('visibleOff');
-    // document.querySelector('.nav_login_button').style.visibility = "hidden";
     document.querySelector('.signup-form').classList.remove('showLoginBox');
 
   }
@@ -465,38 +376,18 @@ signup_fb_login_btn.addEventListener('click',loginWithFacebook);
   
   // CLOSE LOGIN BOX
   function closeLoginBox(){
-  // alert('off');
-  
-    document.getElementById("user-form").style.animation = "slideToDown 1s ease forwards";
     document.querySelector('#main').classList.remove('showLoginBoxMain');
     document.querySelector('#email').value = "";
     document.querySelector('#password').value = "";
-    // notify.innerText = "";
-    // notify2.innerText = "";
-  
-    // document.querySelector('.nav-login-button').classList.add('visibleOn');
-    // document.querySelector('.nav-login-button').style.visibility = "visible";
-    
-  
-  
   }
   const form_close = document.querySelector('.form-close')
   form_close.addEventListener('click', closeLoginBox)
   
-  // SHOW SIGNUP BOX 
   function showSignupBox(){
     // alert('on');
     document.querySelector('#main').classList.add('showLoginBoxMain');
     document.querySelector('.signup-form').classList.add('showLoginBox');
     document.getElementById("signup-form").style.animation = "slideFromTop 1s ease forwards";
-    
-    // notify.innerText = "";
-    // notify2.innerText = "";
-  
-  
-    // document.querySelector('.nav_login_button').classList.add('visibleOff');
-    // document.querySelector('.nav_login_button').style.visibility = "hidden";
-  
     document.querySelector('.user-form').classList.remove('showLoginBox');
 
   }
@@ -514,22 +405,10 @@ signup_fb_login_btn.addEventListener('click',loginWithFacebook);
       document.querySelector('#main').classList.remove('showLoginBoxMain');
       document.querySelector('#email').value = "";
       document.querySelector('#password').value = "";
-      // notify.innerText = "";
-      // notify2.innerText = "";
-    
-      // document.querySelector('.nav-login-button').classList.add('visibleOn');
-      // document.querySelector('.nav-login-button').style.visibility = "visible";
-      
-    
-    
     }
     const signup_form_close = document.querySelector('.signup-form-close')
     signup_form_close.addEventListener('click', closeSignupBox)
 
-    
-    
-
-  
 function loaderAnimation() {
   var loader = document.querySelector("#loader")
   setTimeout(function () {
@@ -547,11 +426,6 @@ function loaderAnimation2() {
   }, 1000)
 }
 
-// loaderAnimation2()
-
-
-
-// ---------------------------------
 function showUserProfileBox() {
   if(document.querySelector('.user-profile-box').style.display == "flex") {
     document.querySelector('.user-profile-box').style.display = "none";
