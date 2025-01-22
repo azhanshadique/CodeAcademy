@@ -1,3 +1,4 @@
+
 ///const proxyUrl = "https://api.allorigins.win/get?url="; // Proxy URL to bypass CORB
 
 const scroll = new LocomotiveScroll({
@@ -376,55 +377,91 @@ signup_fb_login_btn.addEventListener('click',loginWithFacebook);
   
   // CLOSE LOGIN BOX
   function closeLoginBox(){
-    document.querySelector('#main').classList.remove('showLoginBoxMain');
-    document.querySelector('#email').value = "";
-    document.querySelector('#password').value = "";
-  }
-  const form_close = document.querySelector('.form-close')
-  form_close.addEventListener('click', closeLoginBox)
-  
-  function showSignupBox(){
-    // alert('on');
-    document.querySelector('#main').classList.add('showLoginBoxMain');
-    document.querySelector('.signup-form').classList.add('showLoginBox');
-    document.getElementById("signup-form").style.animation = "slideFromTop 1s ease forwards";
-    document.querySelector('.user-form').classList.remove('showLoginBox');
-
-  }
-  const nav_signup_button = document.querySelector('.nav-signup-button')
-  nav_signup_button.addEventListener('click', showSignupBox)
-  
-  const signup_here = document.querySelector('#signup-here')
-  signup_here.addEventListener('click', showSignupBox)
-
-  // CLOSE SIGNUP BOX
-  function closeSignupBox(){
     // alert('off');
     
-      document.getElementById("signup-form").style.animation = "slideToDown 1s ease forwards";
+      document.getElementById("user-form").style.animation = "slideToDown 1s ease forwards";
       document.querySelector('#main').classList.remove('showLoginBoxMain');
       document.querySelector('#email').value = "";
       document.querySelector('#password').value = "";
+      // notify.innerText = "";
+      // notify2.innerText = "";
+    
+      // document.querySelector('.nav-login-button').classList.add('visibleOn');
+      // document.querySelector('.nav-login-button').style.visibility = "visible";
+      
+    
+    
     }
-    const signup_form_close = document.querySelector('.signup-form-close')
-    signup_form_close.addEventListener('click', closeSignupBox)
-
-function loaderAnimation() {
-  var loader = document.querySelector("#loader")
-  setTimeout(function () {
-      loader.style.top = "-100%"
-  }, 4200)
-}
-
-loaderAnimation()
-
-
-function loaderAnimation2() {
-  var loader = document.querySelector("#loader-2")
-  setTimeout(function () {
-      loader.style.top = "-100%"
-  }, 1000)
-}
+    const form_close = document.querySelector('.form-close')
+    form_close.addEventListener('click', closeLoginBox)
+    
+    // SHOW SIGNUP BOX 
+    function showSignupBox(){
+      // alert('on');
+      document.querySelector('#main').classList.add('showLoginBoxMain');
+      document.querySelector('.signup-form').classList.add('showLoginBox');
+      document.getElementById("signup-form").style.animation = "slideFromTop 1s ease forwards";
+      
+      // notify.innerText = "";
+      // notify2.innerText = "";
+    
+    
+      // document.querySelector('.nav_login_button').classList.add('visibleOff');
+      // document.querySelector('.nav_login_button').style.visibility = "hidden";
+    
+      document.querySelector('.user-form').classList.remove('showLoginBox');
+  
+    }
+    const nav_signup_button = document.querySelector('.nav-signup-button')
+    nav_signup_button.addEventListener('click', showSignupBox)
+    
+    const signup_here = document.querySelector('#signup-here')
+    signup_here.addEventListener('click', showSignupBox)
+  
+    // CLOSE SIGNUP BOX
+    function closeSignupBox(){
+      // alert('off');
+      
+        document.getElementById("signup-form").style.animation = "slideToDown 1s ease forwards";
+        document.querySelector('#main').classList.remove('showLoginBoxMain');
+        document.querySelector('#email').value = "";
+        document.querySelector('#password').value = "";
+        // notify.innerText = "";
+        // notify2.innerText = "";
+      
+        // document.querySelector('.nav-login-button').classList.add('visibleOn');
+        // document.querySelector('.nav-login-button').style.visibility = "visible";
+        
+      
+      
+      }
+      const signup_form_close = document.querySelector('.signup-form-close')
+      signup_form_close.addEventListener('click', closeSignupBox)
+  
+      
+      
+  
+    
+  function loaderAnimation() {
+    var loader = document.querySelector("#loader")
+    setTimeout(function () {
+        loader.style.top = "-100%"
+    }, 4200)
+  }
+  
+  loaderAnimation()
+  
+  
+  function loaderAnimation2() {
+    var loader = document.querySelector("#loader-2")
+    setTimeout(function () {
+        loader.style.top = "-100%"
+    }, 1000)
+  }
+  
+  // loaderAnimation2()
+  
+  
 
 function showUserProfileBox() {
   if(document.querySelector('.user-profile-box').style.display == "flex") {

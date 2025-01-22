@@ -1,3 +1,7 @@
+// const scroll = new LocomotiveScroll({
+//   el: document.querySelector('#main'),
+//   smooth: true
+// });
 // Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBPACURk0fECwcx7mdnvgKvzoAwFIZ-wfc",
