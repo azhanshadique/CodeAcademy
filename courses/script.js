@@ -151,28 +151,18 @@ const firebaseConfig = {
       links.appendChild(youtubeLink);
   
       // Practice link
-        const practiceLink = document.createElement('a');
-        if (problemData.link && problemData.link !== 'N/A') {
-            // If a valid link is provided, use it
-            practiceLink.href = problemData.link;
-        } else {
-            // If no link or 'N/A' is provided, redirect to the local index.html file in the corresponding subfolder
-            practiceLink.href = `/codeEditor/${problemData.id}/index.html`;
-        }
-        practiceLink.textContent = '📝 Practice';
-        practiceLink.target = '_blank'; // Open in a new tab
-        links.appendChild(practiceLink);
-
-
+      const practiceLink = document.createElement('a');
+      practiceLink.href = problemData.link || '#';
+      practiceLink.textContent = '📝 Practice';
+      links.appendChild(practiceLink);
   
       topic.appendChild(links);
       return topic;
   }
   
   async function generateArticle(problemTitle) {
-    //   const apiKey = "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"; // Replace with your actual OpenAI API key
-    const apiKey = "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";  
-    const url = "https://api.openai.com/v1/chat/completions";
+      const apiKey = "your-openai-api-key"; // Replace with your actual OpenAI API key
+      const url = "https://api.openai.com/v1/chat/completions";
   
       const payload = {
           model: "gpt-3.5-turbo",
@@ -221,5 +211,4 @@ const firebaseConfig = {
           alert(`Error occurred: ${error.message}`);
       }
   }
-
   
