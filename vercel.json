@@ -2,9 +2,9 @@
 
     "cleanUrls": true,
     "rewrites": [
-      { "source": "/about", "destination": "/about.html" },
-      { "source": "/contact", "destination": "/contact.html" },
-        { "source": "/courses", "destination": "/courses.html" },
+      { "source": "/about", "destination": "/about/index.html" },
+      { "source": "/contact", "destination": "/contact/index.html" },
+        { "source": "/courses", "destination": "/courses/index.html" },
     ]
 }
 
