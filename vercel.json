@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "routes": [
     { "src": "/about", "dest": "/about/index.html" },
     { "src": "/contact", "dest": "/contact/index.html" }
