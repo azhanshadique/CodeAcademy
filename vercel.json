@@ -1,10 +1,3 @@
 {
-  "rewrites": [
-      { "source": "/naya", "destination": "/naya.html" },
-      { "source": "/contact", "destination": "/contact/index.html" },
-        { "source": "/courses", "destination": "/courses/index.html" }
-    ]
+  "cleanUrls": true
 }
-
-   
-
