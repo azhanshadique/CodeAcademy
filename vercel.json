@@ -1,11 +1,7 @@
 {
 
-    "cleanUrls": true,
-    "rewrites": [
-      { "source": "/about", "destination": "/about/index.html" },
-      { "source": "/contact", "destination": "/contact/index.html" },
-        { "source": "/courses", "destination": "/courses/index.html" }
-    ]
+    "cleanUrls": true
+    
 }
 
    
